@@ -1,0 +1,27 @@
+General strategies for CTF
+
+1. Use "file" command for every new file to view file data
+2. Search for strings using string | grep pipe
+3. Binwalk will search binary images for embedded files and exe codes
+4. Use exiftool to find metadata information for file
+5. Cyberchef allows for all kinds of conversions
+6. Use zsteg for analyzing images to find hidden data (steganography)
+7. Remember that you can often redirect output to a file of your choice and then look at it that way!!
+
+
+Metadata
+
+1. When looking for metadata, look at all pieces (use exiftool) to see if there is anything funky
+
+
+Base64-encoded strings
+
+1. Always a multiple of 4
+	- use echo piped through wc to count the number of chars in a string
+	- ex: echo -n "cGljb0NURnt0aGVfbTN0YWRhdGFfMXNfbW9kaWZpZWR9" | wc -m
+		- "-n" prevents newline
+		- wc counts lines, words, chars, etc (-m is chars)
+2. Only uses "A" to "Z", "a" to "z", "0" to "9", and "+" "/"
+3. End of a string can be padded up to two times using the "=" char (allowed at end only)
+4. Use cyberchef to decode potential Base64-encoded strings
+
