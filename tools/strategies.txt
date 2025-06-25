@@ -7,6 +7,37 @@ General strategies for CTF
 5. Cyberchef allows for all kinds of conversions
 6. Use zsteg for analyzing images to find hidden data (steganography)
 7. Remember that you can often redirect output to a file of your choice and then look at it that way!!
+8. You can use "find" to find a file in a hierarchy
+	- find . -name file.txt
+
+Disk Analysis
+1. Main layers of disk images:
+	1. Media
+		- All media layer tools start with "mm"
+		- use mmls to get the partition table of the image and other info
+		- Lowest level, provides access info for deeper layers
+	2. Block
+		- second lowest level
+		- All Block layer tools start with "blk"
+		- blkcat will give contents of a single block
+		- All broken into equal-sized chunks
+	3. Inode
+		- This is the bookkeeping layer of the image
+		- Tools for this layer start with "i"
+		- Kinda works like a table of contents
+		- icat is like cat for the filename layer, but outputs the contents of a file based on 
+		  the inode number
+			- when using icat, you can extract a file like this:
+				- icat -o 123456 file.img 123 > output.txt
+				- then if that is encrypted, run openssl on it
+	4. Filename
+		- This is the layer the user usually sees
+		- Most interactions with the filename layer use regular shell commands
+		- All tools for this layer start with "f"
+		
+1. Sleuthkit
+	- To solve problems with an instance, use the given access checker program
+	- If asked for length in sectors: use the information from the file command
 
 
 Metadata
@@ -24,4 +55,9 @@ Base64-encoded strings
 2. Only uses "A" to "Z", "a" to "z", "0" to "9", and "+" "/"
 3. End of a string can be padded up to two times using the "=" char (allowed at end only)
 4. Use cyberchef to decode potential Base64-encoded strings
+	- Two other options for decoding Base64-encoded strings:
+		- base64 -d <<< string
+			- "-d" is the flag for decode
+		- openssl base64 -d <<< string
+5. Using base64 command
 
