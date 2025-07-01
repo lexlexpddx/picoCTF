@@ -110,3 +110,34 @@
 		2. SYN, ACK from host B
 			- ACK = acknowledgement
 		3. Ack from host A
+	- Look at packets that do not have TCP handshake flags
+	- To inspect a packet, double click on the packet
+	- If you see things like a protocol that stands out and is the only one, inspect those further
+	- Filter as many packets as you can, and then look for oddities
+
+## Network Layers
+1. **Application Layer**
+	- This layer handles data traffic between applications
+	- HTTP is in this layer: used to obtain web pages
+	- In Wireshark you can see the layer on the middle panel breakdown
+2. **Transport Layer**
+	- This layer is responsible for providing connections on the same host, allowing for several applications on the same device to have a different connection
+	- Defines functionality for reliable transport
+	- Two protocols are used on this layer:
+		1. **TCP**
+			- Used when you need to ahve reliable transport
+		2. **UDP**
+			- Used when you don't need reliable transport
+			- Often used for voice communication
+	- Each connection is assigned to a port, which allos it to tell the difference between connections in the same computer.
+3. **Network Layer**
+	- Provides devices with an address in the network (IP address)
+	- Routes info through different routers
+	- Maps connections between all the computers connected to the internet
+4. **Data Link Layer**
+	- Provides communication between devices that are connected directly
+	- Ethernet and Wifi are protocols in the data link layer
+		- MAC addresses specify a physical address on ethernet or wifi
+		- MAC addresses can change depending on the network you are connected to
+5. **Physical Layer**
+	- Handles electrical pulses on the wire that represent bits	
