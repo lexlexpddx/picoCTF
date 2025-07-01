@@ -141,3 +141,10 @@
 		- MAC addresses can change depending on the network you are connected to
 5. **Physical Layer**
 	- Handles electrical pulses on the wire that represent bits	
+
+## Zbarimg
+1. Uses zbar-tools to scan and decode various barcode formats
+2. To install:
+	- ```sudo apt-get install zbar-tools```
+3. When you want to try to decode an image use:
+	- ```zbarimg your_file.png```
