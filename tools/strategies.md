@@ -1,4 +1,4 @@
-General strategies for CTF
+# General strategies for CTF
 
 1. Use "file" command for every new file to view file data
 2. Search for strings using string | grep pipe
@@ -10,32 +10,31 @@ General strategies for CTF
 8. You can use "find" to find a file in a hierarchy
 	- find . -name file.txt
 
-Disk Analysis
+## Disk Analysis
 1. Main layers of disk images:
-	1. Media
+	1. **Media**
 		- All media layer tools start with "mm"
 		- use mmls to get the partition table of the image and other info
 		- Lowest level, provides access info for deeper layers
-	2. Block
+	2. **Block**
 		- second lowest level
 		- All Block layer tools start with "blk"
 		- blkcat will give contents of a single block
 		- All broken into equal-sized chunks
-	3. Inode
+	3. **Inode**
 		- This is the bookkeeping layer of the image
 		- Tools for this layer start with "i"
 		- Kinda works like a table of contents
-		- icat is like cat for the filename layer, but outputs the contents of a file based on 
-		  the inode number
+		- icat is like cat for the filename layer, but outputs the contents of a file based on the inode number
 			- when using icat, you can extract a file like this:
 				- icat -o 123456 file.img 123 > output.txt
 				- then if that is encrypted, run openssl on it
-	4. Filename
+	4. **Filename**
 		- This is the layer the user usually sees
 		- Most interactions with the filename layer use regular shell commands
 		- All tools for this layer start with "f"
 		
-1. Sleuthkit
+2. Sleuthkit
 	- To solve problems with an instance, use the given access checker program
 	- If asked for length in sectors: use the information from the file command
 	- Netcat (NC)
@@ -65,12 +64,12 @@ Disk Analysis
 		- Look at folders that have user influece, like root and home
 		- If a file or folder as (realloc) that means it has been deleted or moved
 
-Metadata
+## Metadata
 
 1. When looking for metadata, look at all pieces (use exiftool) to see if there is anything funky
 
 
-Base64-encoded strings
+## Base64-encoded strings
 
 1. Always a multiple of 4
 	- use echo piped through wc to count the number of chars in a string
@@ -86,14 +85,15 @@ Base64-encoded strings
 		- openssl base64 -d <<< string
 5. Using base64 command
 
-Openssl
+
+## Openssl
 1. Openssl encrypts files using various encryption schemes
 2. Usually formatted like this:
 	- openssl <encryption scheme> -d -in <file_to_decrypt> -out <output_file>
 	- "-d" allows a decrypt
 	- you can also use -k to put in the password, or it will prompt 
 
-Packet Analysis
+## Packet Analysis
 1. Also known as network analysis
 	- Understand what has happened on a network through analyzing captured packets
 	- We will use wireshark
