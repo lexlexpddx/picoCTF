@@ -203,3 +203,10 @@
 1. **Hexadecimal representation**
 	- To print a hex representation of a number in a string you can use ``\x`` which tells python that the following two characters are a hex number
 2.
+=======
+## Zbarimg
+1. Uses zbar-tools to scan and decode various barcode formats
+2. To install:
+	- ```sudo apt-get install zbar-tools```
+3. When you want to try to decode an image use:
+	- ```zbarimg your_file.png```
